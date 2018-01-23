@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, redirect
 import requests
 import json 
 import random
+import os
 import dateutil.parser
+
 app = Flask(__name__)
 
 # Helper function to parse the raw string from the Blockchain
@@ -118,6 +120,9 @@ def customer():
 	r = requests.get('http://localhost:3000/api/ChangeOwner')
 	return render_template('customer.html', title="Customer", transactions=r.json())
 
+# When running this app on the local machine, default the port to 8000
+port = int(os.getenv('PORT', 5000))
+
 # Entry point to the program
 if __name__ == "__main__":
-	app.run(debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)

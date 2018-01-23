@@ -1,0 +1,6 @@
+---
+applications:
+ - name: pizza-on-blockchain
+   random-route: true
+   memory: 256M
+   buildpack: python_buildpack
